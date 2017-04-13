@@ -5,7 +5,7 @@ Create threads that can take jobs from common queue...process it and print it to
  A good explanation is present here: http://tutorials.jenkov.com/java-util-concurrent/index.html
 
  1. ArrayBlockingQueue, size bounded queue. No need to use synchronize block while put/take operations
-        BlockingQueue queue = new ArrayBlockingQueue(1024);
+        BlockingQueue queue = new ArrayBlockingQueue(1024);<br>
         queue.put("1");
         Object object = queue.take();
 
