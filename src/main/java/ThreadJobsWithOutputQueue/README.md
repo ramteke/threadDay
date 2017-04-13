@@ -16,7 +16,7 @@ Create threads that can take jobs from common queue...process it and print it to
         bounded.put("Value");
         String value = bounded.take();
 </pre>
-<b>3. PriorityBlockingQueue</b>, unbounded concurrent queue. Have to use Comparable implementation to check priorities<br>
+<b>3. PriorityBlockingQueue</b>, unbounded concurrent queue. <br>Have to use Comparable implementation to check priorities<br>
         <pre>
         BlockingQueue queue   = new PriorityBlockingQueue();
         queue.put("Value");
@@ -28,15 +28,14 @@ Create threads that can take jobs from common queue...process it and print it to
 
 <b>5. BlockingDeque (Double Ended Queue)</b>, blocks thread to insert/remove elements.<br><br>
 
-        ArrayBlockingQueue vs LinkedBlockingDeque<br>
-        Source:https://stackoverflow.com/questions/18375334/what-is-the-difference-between-arrayblockingqueue-and-linkedblockingqueue<br><br>
+        <b>ArrayBlockingQueue vs LinkedBlockingDeque</b><br>
 
-            ArrayBlockingQueue is backed by an array that size will never change after creation.<br>
-               Setting the capacity to Integer.MAX_VALUE would create a big array with high costs in space.<br>
-               ArrayBlockingQueue is always bounded.<br><br>
+        ArrayBlockingQueue is backed by an array that size will never change after creation.<br>
+        Setting the capacity to Integer.MAX_VALUE would create a big array with high costs in space.<br>
+        ArrayBlockingQueue is always bounded.<br><br>
 
-            LinkedBlockingQueue creates nodes dynamically until the capacity is reached (Integer.MAX_VALUE)<br>
-            LinkedBlockingQueue is optionally bounded.<br><br><br>
+        LinkedBlockingQueue creates nodes dynamically until the capacity is reached (Integer.MAX_VALUE)<br>
+        LinkedBlockingQueue is optionally bounded.<br><br><br>
 
 <pre>
         BlockingDeque<String> deque = new LinkedBlockingDeque<String>();<br>
