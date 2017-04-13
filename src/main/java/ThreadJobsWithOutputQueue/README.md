@@ -57,5 +57,7 @@ LOGIC:<br>
      2. Start instances of this JOB Processing thread<br>
      3. Also create a printing thread. It runs as long as it is aborted using a <b>AtomicBoolean</b>
      <br><br>
-     4. use future.get() to wait for all the executors to complete. Each get() now becomes a blocking call and now we go sequential at each iteration<br>
+     4. use future.get() to wait for all the executors to complete.<br>
+        Each get() now becomes a blocking call and now we go sequential at each iteration
+        <br><br>
      5. Once all future's are done, set AtomicBoolean and force abort the printing thread.<br>
