@@ -28,20 +28,21 @@ Create threads that can take jobs from common queue...process it and print it to
 
 <b>5. BlockingDeque (Double Ended Queue)</b>, blocks thread to insert/remove elements.<br><br>
 
-        <b>ArrayBlockingQueue vs LinkedBlockingDeque</b><br>
-
-        ArrayBlockingQueue is backed by an array that size will never change after creation.<br>
-        Setting the capacity to Integer.MAX_VALUE would create a big array with high costs in space.<br>
-        ArrayBlockingQueue is always bounded.<br><br>
-
-        LinkedBlockingQueue creates nodes dynamically until the capacity is reached (Integer.MAX_VALUE)<br>
-        LinkedBlockingQueue is optionally bounded.<br><br><br>
-
 <pre>
-        BlockingDeque<String> deque = new LinkedBlockingDeque<String>();<br>
+        <b>ArrayBlockingQueue vs LinkedBlockingDeque</b>
+
+        ArrayBlockingQueue is backed by an array that size will never change after creation.
+        Setting the capacity to Integer.MAX_VALUE would create a big array with high costs in space.
+        ArrayBlockingQueue is always bounded.
+
+        LinkedBlockingQueue creates nodes dynamically until the capacity is reached (Integer.MAX_VALUE)
+        LinkedBlockingQueue is optionally bounded.
+
+
+        BlockingDeque<String> deque = new LinkedBlockingDeque<String>();
 
         deque.addFirst("1");
-        deque.addLast("2");<br>
+        deque.addLast("2");
 
         String two = deque.takeLast();
         String one = deque.takeFirst();
