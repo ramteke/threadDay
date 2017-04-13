@@ -5,27 +5,31 @@ Create threads that can take jobs from common queue...process it and print it to
  A good explanation is present here: http://tutorials.jenkov.com/java-util-concurrent/index.html<br><br>
 
  <b>1. ArrayBlockingQueue</b>, size bounded queue. No need to use synchronize block while put/take operations<br>
-        BlockingQueue queue = new ArrayBlockingQueue(1024);<br>
-        queue.put("1");<br>
-        Object object = queue.take();<br><br>
-
+        <pre>
+        BlockingQueue queue = new ArrayBlockingQueue(1024);
+        queue.put("1");
+        Object object = queue.take();<br><
+</pre>
  <b>2. LinkedBlockingQueue</b>, content stored as link list. Can be bounded and UnBounded<br>
-        BlockingQueue<String> unbounded = new LinkedBlockingQueue<String>();<br>
-        bounded.put("Value");<br>
-        String value = bounded.take();<br><br>
-
+        <pre>
+        BlockingQueue<String> unbounded = new LinkedBlockingQueue<String>();
+        bounded.put("Value");
+        String value = bounded.take();
+</pre>
 <b>3. PriorityBlockingQueue</b>, unbounded concurrent queue. Have to use Comparable implementation to check priorities<br>
-        BlockingQueue queue   = new PriorityBlockingQueue();<br>
-        queue.put("Value");<br>
-        String value = queue.take();<br><br>
+        <pre>
+        BlockingQueue queue   = new PriorityBlockingQueue();
+        queue.put("Value");
+        String value = queue.take();
+</pre>
 
 <b>4. SynchronousQueue</b>, one element queue. Thread inserting/adding gets blocked on full/empty states<br>
         Good For Demo. But Lets leave it here<br><br>
 
-<b>5. BlockingDeque ("Double Ended Queue")</b>, blocks thread to insert/remove elements.<br><br>
+<b>5. BlockingDeque (Double Ended Queue)</b>, blocks thread to insert/remove elements.<br><br>
 
         ArrayBlockingQueue vs LinkedBlockingDeque<br>
-        :: Source:https://stackoverflow.com/questions/18375334/what-is-the-difference-between-arrayblockingqueue-and-linkedblockingqueue<br><br>
+        Source:https://stackoverflow.com/questions/18375334/what-is-the-difference-between-arrayblockingqueue-and-linkedblockingqueue<br><br>
 
             ArrayBlockingQueue is backed by an array that size will never change after creation.<br>
                Setting the capacity to Integer.MAX_VALUE would create a big array with high costs in space.<br>
@@ -34,15 +38,15 @@ Create threads that can take jobs from common queue...process it and print it to
             LinkedBlockingQueue creates nodes dynamically until the capacity is reached (Integer.MAX_VALUE)<br>
             LinkedBlockingQueue is optionally bounded.<br><br><br>
 
+<pre>
+        BlockingDeque<String> deque = new LinkedBlockingDeque<String>();<br>
 
-        BlockingDeque<String> deque = new LinkedBlockingDeque<String>();<br><br>
+        deque.addFirst("1");
+        deque.addLast("2");<br>
 
-        deque.addFirst("1");<br>
-        deque.addLast("2");<br><br>
-
-        String two = deque.takeLast();<br>
-        String one = deque.takeFirst();<br>
-
+        String two = deque.takeLast();
+        String one = deque.takeFirst();
+</pre>
 
         LinkedBlockingDeque FITS the Bill for my problem here.<br><br>
 
