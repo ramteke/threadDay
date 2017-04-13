@@ -34,6 +34,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 5. BlockingDeque ("Double Ended Queue"), blocks thread to insert/remove elements.
 
+        ArrayBlockingQueue vs LinkedBlockingDeque
+        :: Source:https://stackoverflow.com/questions/18375334/what-is-the-difference-between-arrayblockingqueue-and-linkedblockingqueue
+
+            ArrayBlockingQueue is backed by an array that size will never change after creation.
+               Setting the capacity to Integer.MAX_VALUE would create a big array with high costs in space.
+               ArrayBlockingQueue is always bounded.
+
+            LinkedBlockingQueue creates nodes dynamically until the capacity is reached (Integer.MAX_VALUE)
+            LinkedBlockingQueue is optionally bounded.
+
+
         BlockingDeque<String> deque = new LinkedBlockingDeque<String>();
 
         deque.addFirst("1");
