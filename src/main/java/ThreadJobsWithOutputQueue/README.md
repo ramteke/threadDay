@@ -46,11 +46,11 @@ Create threads that can take jobs from common queue...process it and print it to
 
         String two = deque.takeLast();
         String one = deque.takeFirst();
-</pre>
 
-        LinkedBlockingQueque FITS the Bill for my problem here.<br><br>
+        LinkedBlockingQueque FITS the Bill for my problem here.
 
-        queue.take() blocks you on empty data. so make sure to check for size before doing take() else u cannot abort out of printing thread.<br><br>
+        queue.take() blocks you on empty data. so make sure to check for size before doing take() else u cannot abort out of printing thread.
+        </pre>
 
 LOGIC:<br>
      1. Create a JOB Processing thread with fixed batch size as input.<br>
