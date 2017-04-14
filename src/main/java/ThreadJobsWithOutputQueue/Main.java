@@ -11,11 +11,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 class JobProcessor implements Callable<String> {
     final int id;
-    final BlockingDeque<String> outputQueue;
+    final BlockingQueue<String> outputQueue;
     final String pattern;
     final List<String> inputDataSet;
 
-    public JobProcessor(int id, BlockingDeque<String> queue, List<String> inputDataSet, String pattern) {
+    public JobProcessor(int id, BlockingQueue<String> queue, List<String> inputDataSet, String pattern) {
         this.id = id;
         this.outputQueue = queue;
         this.pattern = pattern;
@@ -39,10 +39,10 @@ class JobProcessor implements Callable<String> {
 }
 
 class PrinterProcess implements Runnable {
-    final BlockingDeque<String> outputQueue;
+    final BlockingQueue<String> outputQueue;
     AtomicBoolean abort;
 
-    public PrinterProcess(BlockingDeque<String> queue, AtomicBoolean atomicBoolean) {
+    public PrinterProcess(BlockingQueue<String> queue, AtomicBoolean atomicBoolean) {
         this.outputQueue = queue;
         this.abort = atomicBoolean;
     }
@@ -96,7 +96,7 @@ public class Main {
         System.out.println(" Will be creating " + threadSize + " parallel jobs");
 
         ExecutorService service = Executors.newCachedThreadPool();
-        BlockingDeque<String> outputQueue = new LinkedBlockingDeque<String>();
+        BlockingQueue<String> outputQueue = new LinkedBlockingQueue<String>();
         List<Future> allFutures = new ArrayList<Future>();
 
         //Start printing process
