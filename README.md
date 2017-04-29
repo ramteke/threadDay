@@ -1,4 +1,4 @@
-#Some Basic, Some Advanced
+#Some Basic, Some Advanced  :
 
 1. DinningPhilosophers (ReentrantLock) 
 		https://github.com/ramteke/threadDay/tree/master/src/main/java/DinningPhilosophers
