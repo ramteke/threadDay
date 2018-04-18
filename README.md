@@ -8,3 +8,6 @@
 		
 3. ThreadJobsWithOutputQueue (BlockingQueue + AtomicBoolean)
 		https://github.com/ramteke/threadDay/tree/master/src/main/java/ThreadJobsWithOutputQueue
+		
+4. Simple Async thread which performs operations on the blocking queue.
+                https://github.com/ramteke/threadDay/tree/master/src/main/java/AsyncThreadWithProcessingQueue
