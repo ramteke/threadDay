@@ -1,5 +1,6 @@
 package ProducerConsumer;
 
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +19,7 @@ class Producer extends Thread {
     }
 
     public void run() {
+        long counter = 0;
         while ( true ) {
             synchronized (array) {
                 if ( array.size() == MAX_SIZE) {
@@ -27,18 +29,13 @@ class Producer extends Thread {
                         System.out.println("Producer got interrupted while waiting !!!. " + e);
                         break;
                     }
-                } else {
-                    String data = new Date().toString();
-                    System.out.println("Added :  " + data);
-                    array.add(data);
-                    array.notifyAll();   //Allow consumer to consume this new item
-                    try {
-                        Thread.sleep(100); //Lets wait here and allow consumer to take items
-                    } catch (java.lang.InterruptedException e) {
-                        System.out.println("Producer got interrupted while sleeping !!!.  " + e);
-                        break;
-                    }
                 }
+                String data = new Date().toString();
+                System.out.println("Added : " + counter);
+                array.add(counter+"");
+                counter++;
+                array.notifyAll();   //Allow consumer to consume this new item
+                
             }
         }
     }
@@ -62,11 +59,11 @@ class Consumer extends Thread {
                         System.out.println("Consumer got interrupted while waiting. " + e);
                         break;
                     }
-                } else {
-                    System.out.println("Consuming: " + array.get(0));
-                    array.remove(0);
-                    array.notifyAll(); //Allow producer to add more
                 }
+                System.out.println("Consuming: " + array.remove(0));
+
+                array.notifyAll(); //Allow producer to add more
+
             }
         }
     }
@@ -83,63 +80,3 @@ public class Main {
     }
 
 }
-
-
-/*
------------------------   Sample Output ----------------------------
-
-Added :  Thu Apr 13 19:07:21 IST 2017
-Added :  Thu Apr 13 19:07:21 IST 2017
-Consuming: Thu Apr 13 19:07:21 IST 2017
-Consuming: Thu Apr 13 19:07:21 IST 2017
-Added :  Thu Apr 13 19:07:21 IST 2017
-Added :  Thu Apr 13 19:07:21 IST 2017
-Added :  Thu Apr 13 19:07:22 IST 2017
-Added :  Thu Apr 13 19:07:22 IST 2017
-Added :  Thu Apr 13 19:07:22 IST 2017
-Added :  Thu Apr 13 19:07:22 IST 2017
-Added :  Thu Apr 13 19:07:22 IST 2017
-Added :  Thu Apr 13 19:07:22 IST 2017
-Added :  Thu Apr 13 19:07:22 IST 2017
-Added :  Thu Apr 13 19:07:22 IST 2017
-Consuming: Thu Apr 13 19:07:21 IST 2017
-Consuming: Thu Apr 13 19:07:21 IST 2017
-Consuming: Thu Apr 13 19:07:22 IST 2017
-Consuming: Thu Apr 13 19:07:22 IST 2017
-Consuming: Thu Apr 13 19:07:22 IST 2017
-Consuming: Thu Apr 13 19:07:22 IST 2017
-Consuming: Thu Apr 13 19:07:22 IST 2017
-Consuming: Thu Apr 13 19:07:22 IST 2017
-Consuming: Thu Apr 13 19:07:22 IST 2017
-Consuming: Thu Apr 13 19:07:22 IST 2017
-Added :  Thu Apr 13 19:07:22 IST 2017
-Added :  Thu Apr 13 19:07:22 IST 2017
-Added :  Thu Apr 13 19:07:23 IST 2017
-Added :  Thu Apr 13 19:07:23 IST 2017
-Added :  Thu Apr 13 19:07:23 IST 2017
-Added :  Thu Apr 13 19:07:23 IST 2017
-Added :  Thu Apr 13 19:07:23 IST 2017
-Added :  Thu Apr 13 19:07:23 IST 2017
-Added :  Thu Apr 13 19:07:23 IST 2017
-Added :  Thu Apr 13 19:07:23 IST 2017
-Consuming: Thu Apr 13 19:07:22 IST 2017
-Consuming: Thu Apr 13 19:07:22 IST 2017
-Added :  Thu Apr 13 19:07:23 IST 2017
-Added :  Thu Apr 13 19:07:24 IST 2017
-Consuming: Thu Apr 13 19:07:23 IST 2017
-Consuming: Thu Apr 13 19:07:23 IST 2017
-Consuming: Thu Apr 13 19:07:23 IST 2017
-Consuming: Thu Apr 13 19:07:23 IST 2017
-Consuming: Thu Apr 13 19:07:23 IST 2017
-Consuming: Thu Apr 13 19:07:23 IST 2017
-Consuming: Thu Apr 13 19:07:23 IST 2017
-Consuming: Thu Apr 13 19:07:23 IST 2017
-Consuming: Thu Apr 13 19:07:23 IST 2017
-Consuming: Thu Apr 13 19:07:24 IST 2017
-Added :  Thu Apr 13 19:07:24 IST 2017
-Added :  Thu Apr 13 19:07:24 IST 2017
-Added :  Thu Apr 13 19:07:24 IST 2017
-Added :  Thu Apr 13 19:07:24 IST 2017
-
-Process finished with exit code 130 (interrupted by signal 2: SIGINT)
- */
